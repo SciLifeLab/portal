@@ -1,0 +1,517 @@
+<?php
+
+define('RELATION_EDIT_MULTIPLE_ADD_BLANC_FIELDS', 3);
+
+/**
+ * Implements hook_theme.
+ */
+function relation_edit_theme($existing, $type, $theme, $path) {
+  return array(
+    'relation_edit_widget' => array(
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_info().
+ */
+function relation_edit_field_widget_info() {
+  return array(
+    'relation_edit' => array(
+      'label' => t('Edit form of related content'), 
+      'field types' => array('relation'),
+      'settings' => array('node_bundle' => NULL, 'hidden_fields' => array('actions', 'options', 'revision_information', 'author', 'additional_settings'), 'hidden_fields_relation' => array('actions', 'endpoints'), 'delete_endpoint' => TRUE),
+      'behaviors' => array(
+        'multiple values' => FIELD_BEHAVIOR_CUSTOM, 
+        'default value' => FIELD_BEHAVIOR_NONE,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_field_widget_settings_form().
+ */
+function relation_edit_field_widget_settings_form($field, $instance) { // TODO: Missing form argument! Is it problem?
+  $widget = $instance['widget'];
+  $settings = $widget['settings'];
+  
+  // Load node types
+  $bundle_options = array();
+  foreach(node_type_get_types() as $type)
+    $bundle_options[$type->type] = $type->name;
+  
+  $form['node_bundle'] = array(
+    '#type' => 'select', 
+    '#title' => t('Type of related content'), 
+    '#default_value' => $settings['node_bundle'],
+    '#options' => $bundle_options,
+    '#required' => TRUE,
+    '#description' => t('Related entities that are not content of this type will be shown as link.'),
+  );
+  
+  // Hide fields for node
+  if($settings['node_bundle']) {
+    // Load fields
+    module_load_include('inc', 'node', 'node.pages');
+    $node_form_state = array();
+    $node_form = node_form(array(), $node_form_state, (object)array('type' => $settings['node_bundle'], 'language' => LANGUAGE_NONE));
+    $hidden_fields_options = array();
+    foreach ($node_form as $field_name => $field) {
+      if(is_array($field) && isset($field['#type']) && $field['#type'] != 'value' && $field['#type'] != 'hidden')
+        $hidden_fields_options[$field_name] = isset($field['#title']) ? $field['#title'] : $field_name;
+    }
+    
+    $form['hidden_fields'] = array(
+      '#type' => 'checkboxes', 
+      '#title' => t('Hide this fields'), 
+      '#default_value' => $settings['hidden_fields'],
+      '#options' => $hidden_fields_options,
+    );
+  } else {
+    $form['hidden_fields'] = array(
+      '#markup' => t('Select and save <em>Type of related nodes</em> for setup hidden fields.'),
+    );
+  }
+  
+  // Hide fields for relation
+  $relation_type = $instance['settings']['relation_type'];
+  $relation_type = array_shift($relation_type);
+  if($relation_type) {
+    // Load fields
+    $relation_form_state = array();
+    $relation_form = relation_edit_form(array(), $relation_form_state, relation_create($relation_type, array()));
+    $hidden_fields_options = array();
+    foreach ($relation_form as $field_name => $field) {
+      if(is_array($field) && isset($field['#type']) && $field['#type'] != 'value' && $field['#type'] != 'hidden')
+        $hidden_fields_options[$field_name] = isset($field['#title']) ? $field['#title'] : $field_name;
+    }
+    $hidden_fields_options['actions'] = 'actions';
+    
+    $form['hidden_fields_relation'] = array(
+      '#type' => 'checkboxes', 
+      '#title' => t('Hide this fields (relation form)'), 
+      '#default_value' => $settings['hidden_fields_relation'],
+      '#options' => $hidden_fields_options,
+    );
+  } else {
+    $form['hidden_fields_relation'] = array(
+      '#markup' => t('Select and save <em>Relation types</em> for setup hidden fields.'),
+    );
+  }
+  
+  $form['delete_endpoint'] = array(
+    '#type' => 'checkbox', 
+    '#title' => t('Delete endpoints'), 
+    '#default_value' => $settings['delete_endpoint'],
+    '#description' => t('If a user delete relation by this widget, delete related content too. Related content will not be deleted, if a user delete parent content.'),
+  );
+  
+  // TODO: Check if relation type is directional, if booth endpoints are nodes and if this widget in on parent node
+  
+  return $form;
+}
+
+/**
+ * Implements of hook_field_widget_form().
+ */
+function relation_edit_field_widget_form(&$form, &$form_state, $field, $instance, $langcode, $items, $delta, $element) {
+  $widget = $instance['widget'];
+  $settings = $widget['settings'];
+  $settings['relation_type'] = $instance['settings']['relation_type'];
+  $settings['relation_type'] = array_shift($settings['relation_type']);
+  
+  // Check context
+  if($element['#entity_type'] != 'node') {
+    if(user_access('administer content types'))
+      drupal_set_message(t('Relation edit widget works only if parent entity is node.'), 'error');
+    return $element;
+  }
+  if(!isset($settings) || !isset($settings['node_bundle'])) {
+    if(user_access('administer content types'))
+      drupal_set_message(t('Relation edit widget for field %field is not configured.', array('%field' => check_plain($instance['label']))), 'error');
+    return $element;
+  }
+  
+  $field_state = field_form_get_state($form['#parents'], $field['field_name'], $langcode, $form_state);
+  
+  // Erase empty items
+  foreach ($items as $delta => $item) {
+    if (!count($item))
+      unset($items[$delta]);
+  }
+  
+  // Determine the number of widgets to display.
+  $fields_count = $field_state['items_count'];
+  if ($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED)
+    $fields_count += RELATION_EDIT_MULTIPLE_ADD_BLANC_FIELDS;
+  
+  // If weight field installed, turn on reorderable behavior
+  // TODO: Check if weight field installed
+  $reordeable = FALSE;
+  
+  // Load relations
+  if (count($items)) {
+    foreach ($items as $delta => $relation) {
+      if (is_numeric($relation))
+        $items[$delta] = relation_load($relation);
+    }
+  }
+  
+  // Process items
+  for ($delta = 0; $delta < $fields_count; $delta++) {
+    $item = &$items[$delta];
+    
+    $new_item = !isset($item);
+    
+    $element[$delta] = array(
+      '#delta' => $delta,
+      '#weight' => $delta,
+    );
+    
+    // Create relation object if not exists
+    if($new_item) {
+      $item = relation_create($settings['relation_type'], isset($form_state['node']->nid) ? array(
+        0 => array('entity_type' => 'node', 'entity_id' => $form_state['node']->nid),
+      ) : array());
+    }
+    
+    // Define relation form
+    $element[$delta]["$instance[field_name]-{$delta}-relation"] = array(
+      '#type' => 'subform',
+      '#subform_id' => 'relation_edit_form',
+      '#subform_arguments' => array($item, $settings),
+      '#subform_default_triggering_element' => array('actions', 'save'),
+      '#required' => !$new_item,
+    );
+    
+    // Define delete field
+    $element[$delta]['delete'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Delete'),
+      '#default_value' => 0,
+      '#weight' => 101,
+    );
+    
+    if ($new_item) {
+      // Create new node
+      global $user;
+      $related_node = (object) array(
+        'uid' => $user->uid,
+        'name' => (isset($user->name) ? $user->name : ''),
+        'type' => $settings['node_bundle'],
+        'language' => $langcode,
+      );
+    }
+    else {
+      // Load related node
+      $endpoint = $item->endpoints[LANGUAGE_NONE][1];
+      if($endpoint['entity_id'] != $form_state['node']->nid)  
+        $related_node = node_load($endpoint['entity_id']);
+    }
+    
+    $element[$delta]["$instance[field_name]-{$delta}-node"] = array(
+      '#type' => 'subform',
+      '#subform_id' => 'node_form',
+      '#subform_file' => array('module' => 'node', 'name' => 'node.pages'),
+      '#subform_arguments' => array($related_node, $settings),
+      '#subform_default_triggering_element' => array('actions', 'submit'),
+      '#required' => !$new_item,
+      //'#suffix' => krumo_ob($element[$delta]),
+    );
+  }
+  
+  
+  // Element metadata
+  $id_prefix = implode('-', array_merge($form['#parents'], array($field['field_name'])));
+  $wrapper_id = drupal_html_id($id_prefix . '-add-more-wrapper');
+  $element += array(
+    '#field_name' => $field['field_name'], 
+    '#title' => check_plain($instance['label']), // TODO: Does not render if not reordeable
+    '#required' => $instance['required'], 
+    '#description' => field_filter_xss($instance['description']), 
+    '#max_delta' => $field_state['items_count'],
+    '#cardinality' => $field['cardinality'],
+    '#process' => array('relation_edit_field_widget_form_process'),
+    '#theme' => 'relation_edit_widget',
+    '#attached' => array(
+      'css' => array(
+        'type' => 'file',
+        'data' => drupal_get_path('module', 'relation_edit') . '/relation_edit.widget.css',
+      ),
+    ),
+    '#prefix' => '<div id="' . $wrapper_id . '">', 
+    '#suffix' => '</div>', 
+  );
+  
+  // Setup options for reordeable variant
+  if ($reordeable)
+    $element += array(
+      '#theme' => 'field_multiple_value_form',
+    );
+  
+  // Add button if "unlimited"
+  if ($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
+    $element['add_more'] = array(
+      '#type' => 'submit', 
+      '#name' => strtr($id_prefix, '-', '_') . '_add_more', 
+      '#value' => t('Add another item'), 
+      '#attributes' => array('class' => array('field-add-more-submit')), 
+      '#limit_validation_errors' => array(array_merge($form['#parents'], array($field['field_name'], $langcode))), 
+      '#submit' => array('field_add_more_submit'), 
+      '#ajax' => array(
+        'callback' => 'field_add_more_js', 
+        'wrapper' => $wrapper_id, 
+        'effect' => 'fade',
+      ),
+    );
+  }
+  
+  return $element;
+}
+
+/**
+ * Process function for parent form.
+ */
+function relation_edit_field_widget_form_process($element, &$form_state, &$form) {
+  // Handler for save relations
+  $form['#submit']['relation_edit_widget_form_submit'] = 'relation_edit_widget_form_submit';
+  
+  // Handler that handles all subforms.
+  $form['#submit']['subform_submit_all'] = 'subform_submit_all';
+  
+  return $element;
+}
+
+/**
+ * Theme widget table woth or without sorting
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - element: A render element representing the form element.
+ *
+ * @ingroup themeable
+ */
+function theme_relation_edit_widget($variables) {
+  $element = $variables['element'];
+  $output = '';
+
+  if ($element['#cardinality'] > 1 || $element['#cardinality'] == FIELD_CARDINALITY_UNLIMITED) {
+    $table_id = drupal_html_id($element['#field_name'] . '_values');
+    $order_class = $element['#field_name'] . '-delta-order';
+    $required = !empty($element['#required']) ? theme('form_required_marker', $variables) : '';
+
+    $header = array(
+      array(
+        'data' => '<label>' . t('!title: !required', array('!title' => $element['#title'], '!required' => $required)) . "</label>",
+        'colspan' => 2,
+        'class' => array('field-label'),
+      ),
+    );
+    $rows = array();
+
+    // Sort items according to '_weight' (needed when the form comes back after
+    // preview or failed validation)
+    $items = array();
+    foreach (element_children($element) as $key) {
+      if ($key === 'add_more') {
+        $add_more_button = &$element[$key];
+      }
+      else {
+        $items[] = &$element[$key];
+      }
+    }
+
+    // Add the items as table rows.
+    foreach ($items as $key => $item) {
+      $item['_weight']['#attributes']['class'] = array($order_class);
+      $delta_element = drupal_render($item['_weight']);
+      $cells = array(
+        drupal_render($item),
+      );
+      $rows[] = array(
+        'data' => $cells,
+      );
+    }
+
+    $output = '<div class="form-item">';
+    $output .= theme('table', array('header' => $header, 'rows' => $rows, 'attributes' => array('id' => $table_id, 'class' => array('field-multiple-table'))));
+    $output .= $element['#description'] ? '<div class="description">' . $element['#description'] . '</div>' : '';
+    $output .= '<div class="clearfix">' . drupal_render($add_more_button) . '</div>';
+    $output .= '</div>';
+  }
+  else {
+    foreach (element_children($element) as $key) {
+      $output .= drupal_render($element[$key]);
+    }
+  }
+
+  return $output;
+}
+
+/**
+ * Submit handler that save relations.
+ */
+function relation_edit_widget_form_submit($form, &$form_state) {
+  foreach ($form_state['field'] as $field) {
+    // Only own widget type
+    if($field[LANGUAGE_NONE]['instance']['widget']['type'] != 'relation_edit')
+      continue;
+    
+    $field_name = $field[LANGUAGE_NONE]['instance']['field_name'];
+    $settings = $field[LANGUAGE_NONE]['instance']['widget']['settings'];
+    $settings['relation_type'] = array_shift($field[LANGUAGE_NONE]['instance']['settings']['relation_type']);
+    
+    // Walk widget items
+    foreach ($form_state['values'][$field_name][LANGUAGE_NONE] as $delta => $item) {
+      // Filter buttons
+      if(is_string($item))
+        continue;
+      
+      $node_values = &$form_state['temporary']['subform']['subform-' . $field_name . '-' . LANGUAGE_NONE . '-' . $delta . '-' . $field_name . '-' . $delta . '-node']['values'];
+      $relation_state = &$form_state['temporary']['subform']['subform-' . $field_name . '-' . LANGUAGE_NONE . '-' . $delta . '-' . $field_name . '-' . $delta . '-relation'];
+      $item_values = &$form_state['values'][$field_name][LANGUAGE_NONE][$delta];
+      
+      // Delegate processing of one widget item
+      relation_edit_widget_item_submit(&$form_state, $field_name, $delta, &$node_values, &$relation_state, &$item_values, $settings);
+    }
+    
+    // Set settings for parent node
+    $form_state['values']['_relation_edit']['child'] = FALSE;
+  }
+}
+
+/**
+ * Save relations for one widget item.
+ */
+function relation_edit_widget_item_submit(&$form_state, $field_name, $delta, &$node_values, &$relation_state, &$item_values, $settings) {
+
+  // Delete relation
+  if ($item_values['delete']) {
+    if(isset($relation_state['relation']->rid)) {
+      // Delete related node
+      if($settings['delete_endpoint'])
+        node_delete($relation_state['relation']->endpoints[LANGUAGE_NONE][1]['entity_id']);
+      
+      // Delete relation
+      relation_delete($relation_state['relation']->rid);
+    }
+    
+    // Clear subform
+    unset($form_state['temporary']['subform']['subform-' . $field_name . '-' . LANGUAGE_NONE . '-' . $delta . '-' . $field_name . '-' . $delta . '-relation']);
+    unset($form_state['temporary']['subform']['subform-' . $field_name . '-' . LANGUAGE_NONE . '-' . $delta . '-' . $field_name . '-' . $delta . '-node']);
+    unset($form_state['values'][$field_name][LANGUAGE_NONE][$delta]);
+  }
+  
+  else {
+    $relation = $relation_state['relation'];
+    entity_form_submit_build_entity('relation', $relation, $relation_state['original_form'], $relation_state);
+    
+    // Relation exists
+    if (isset($relation_state['values']['endpoints'][LANGUAGE_NONE][1])) {
+      // Save relation
+      if (!relation_save($relation))
+        drupal_set_message(t('Relation has not been saved.'), 'error');
+    }
+    
+    // New child node - create relation
+    elseif (!empty($node_values['title'])) {
+      $node_values['_relation_edit'] = array(
+        'child' => TRUE,
+        'relation' => $relation,
+        'settings' => $settings,
+        'form_token' => $form_state['values']['form_token'],
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_node_insert. Create relation between parent node and newly created node. If parent node is newly created too, relation will be created after save of parent node.
+ */
+function relation_edit_node_insert($node) {
+  if(!isset($node->_relation_edit))
+    return;
+  
+  static $prepared_relations = array();
+  
+  // Child node is created
+  if($node->_relation_edit['child']) {
+    $relation = $node->_relation_edit['relation'];
+    
+    // Set child endpoint
+    $relation->endpoints[LANGUAGE_NONE][1] = array(
+      'entity_type' => 'node',
+      'entity_id' => $node->nid
+    );
+    
+    // Save relation now or later?
+    if(isset($relation->endpoints[LANGUAGE_NONE][0])) { // Save now if parent node exists - parent endpoint is set
+      if (!relation_save($relation))
+        drupal_set_message(t('Relation has not been saved.'), 'error');
+    }
+    else { // Save later after parent node creation
+      $prepared_relations[$node->_relation_edit['form_token']][] = $relation;
+    }
+  }
+  
+  // Save relations if parent node and child node are new both
+  elseif(!$node->_relation_edit['child']) {
+    
+    if(isset($prepared_relations[$node->form_token])) {
+      
+      // Add parent node endpoint and save prepared relations
+      foreach ($prepared_relations[$node->form_token] as $relation) {
+        $relation->endpoints[LANGUAGE_NONE][0] = array('entity_type' => 'node', 'entity_id' => $node->nid);
+        if (!relation_save($relation))
+          drupal_set_message(t('Relation has not been saved.'), 'error');
+      }
+      
+      unset($prepared_relations[$node->form_token]);
+      
+      // Clear cache for parent node
+      cache_clear_all('field:node:' . $node->nid, 'cache_field');
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter. Customizes node form in the subform.
+ */
+function relation_edit_form_node_form_alter(&$form, &$form_state, $form_id) {
+  // Node form is in our widget
+  if(isset($form_state['build_info']['args'][1])) {
+    $settings = $form_state['build_info']['args'][1];
+    
+    // Hide fields
+    foreach ($settings['hidden_fields'] as $field_key) {
+      if($field_key)
+        $form[$field_key]['#access'] = FALSE;
+    }
+    
+    
+  }
+}
+
+/**
+ * Implements hook_form_alter. Customizes relation form in the subform.
+ */
+function relation_edit_form_relation_edit_form_alter(&$form, &$form_state, $form_id) {
+  // Node form is in our widget
+  if(isset($form_state['build_info']['args'][1])) {
+    $settings = $form_state['build_info']['args'][1];
+    
+    $form_state['original_form'] = $form;
+    $form['#submit'] = array();
+    
+    // Hide fields
+    foreach ($settings['hidden_fields_relation'] as $field_key) {
+      if($field_key)
+        $form[$field_key]['#access'] = FALSE;
+    }
+    
+    
+  }
+}
+
