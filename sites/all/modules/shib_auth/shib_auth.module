@@ -248,6 +248,8 @@ function shib_auth_get_idp() {
     return $_SERVER['Shib_Identity_Provider'];
   elseif (isset ($_SERVER['HTTP_SHIB_IDENTITY_PROVIDER']))
     return $_SERVER['HTTP_SHIB_IDENTITY_PROVIDER'];
+  elseif (isset ($_SERVER['HTTP_SHIBIDENTITYPROVIDER']))
+    return $_SERVER['HTTP_SHIBIDENTITYPROVIDER'];
   return '';
 } //function shib_auth_get_idp
 
@@ -389,39 +391,42 @@ function shib_login_authmap($uname, $umail_single, $uid, $alreadyloggedin = Fals
   $account = user_external_load($authmap_username['name']);
   if (isset($account->uid)) {
     //We don't login user again, if there is already one logged in (made redirect loops when linking an account)
-    user_external_login_register($account->name, 'shib_auth');
-    if ($user->uid) {
-      //set auth variable to shib_auth
-      $_SESSION['shib_auth_authentication'] = 'shib_auth';
-      //Shibboleth mail address override was enabled in the admin config
-      if (shib_auth_config('enable_custom_mail') == 0) {
-        //check if there isn't any user with this e-mail (whose name is different)
-        $email_for_other_user = db_select('users', 'c')
-                                  ->fields('c')
-                                  ->condition('mail', $umail_single, '=')
-                                  ->condition('uid', $user->uid, '<>')
-                                  ->execute()
-                                  ->fetchObject();
-
-        if ($email_for_other_user) {
-          shib_auth_error('[shib_login_authmap] Error saving user account. E-mail address is already used.');
-        }
-        //if everything is allright, modify the mail address of the user.
-        else {
-          $user = shib_auth_save_mail($user, $umail_single);
-          if (!$user) {
-            // Something really bad happened
-            shib_auth_error('[shib_login_authmap] Fatal error while saving mail address');
-            return;
+    if (!user_is_blocked($account->name)) {
+      user_external_login_register($account->name, 'shib_auth');
+      if ($user->uid) {
+        //set auth variable to shib_auth
+        $_SESSION['shib_auth_authentication'] = 'shib_auth';
+        //Shibboleth mail address override was enabled in the admin config
+        if (shib_auth_config('enable_custom_mail') == 0) {
+          //check if there isn't any user with this e-mail (whose name is different)
+          $email_for_other_user = db_select('users', 'c')
+                                    ->fields('c')
+                                    ->condition('mail', $umail_single, '=')
+                                    ->condition('uid', $user->uid, '<>')
+                                    ->execute()
+                                    ->fetchObject();
+  
+          if ($email_for_other_user) {
+            shib_auth_error('[shib_login_authmap] Error saving user account. E-mail address is already used.');
+          }
+          //if everything is allright, modify the mail address of the user.
+          else {
+            $user = shib_auth_save_mail($user, $umail_single);
+            if (!$user) {
+              // Something really bad happened
+              shib_auth_error('[shib_login_authmap] Fatal error while saving mail address');
+              return;
+            }
           }
         }
+        //forward user to login url, if set
+        if (shib_auth_config('login_url')!='' && !$alreadyloggedin && $_GET['q']!= shib_auth_config('login_url')) {
+          drupal_goto(shib_auth_config('login_url'));
+        }
       }
-      //forward user to login url, if set
-      if (shib_auth_config('login_url')!='' && !$alreadyloggedin && $_GET['q']!= shib_auth_config('login_url')) {
-        drupal_goto(shib_auth_config('login_url'));
-      }
+      else shib_auth_error('Couldn\'t login user: ' . $authmap_username['name']);
     }
-    else shib_auth_error('Couldn\'t login user: ' . $authmap_username['name']);
+    else shib_auth_error('Couldn\'t login user: ' . $authmap_username['name']. ' has not been activated, or is blocked');
   }
   else shib_auth_error('Couldn\'t login user: ' . $authmap_username['name']);
   //redirect user to a predefined page, or a page, she wanted to see before clicking on login
@@ -1129,7 +1134,7 @@ function shib_auth_block_view($delta = '') {
 function _login_url_html($is_account_linking = FALSE) {
   global $user;
 
-  if ($user->uid === 0 AND $is_account_linking === FALSE) {
+  if (!$user->uid AND $is_account_linking === FALSE) {
     // TODO Please change this theme call to use an associative array for the $variables parameter.
     return theme('shib_login_block', array('login_url' => shib_auth_generate_login_url(), 'login_text' => shib_auth_config('link_text')));
   }
@@ -1167,7 +1172,7 @@ function shib_auth_form_alter(&$form, &$form_state, $form_id) {
       '#markup' => _login_url_html(TRUE),
     );
   }
-  if ($form_id = 'user_admin_role') {
+  if ($form_id == 'user_admin_role') {
     shib_auth_generate_rolenames(TRUE);
   }
 } //function shib_auth_form_alter

@@ -30,6 +30,7 @@
   <?php
     hide($content['comments']);
     hide($content['links']);
+    hide($content['links']['#links']['comment-add']);
     print render($content);
   ?>
   </div>

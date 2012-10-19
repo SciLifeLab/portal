@@ -6,9 +6,9 @@ files[] = shib_auth_forms.inc
 files[] = shib_auth_roles_forms.inc
 configure = admin/config/people/shib_auth
 
-; Information added by drupal.org packaging script on 2011-11-05
-version = "7.x-4.0"
+; Information added by drupal.org packaging script on 2012-05-24
+version = "7.x-4.0+5-dev"
 core = "7.x"
 project = "shib_auth"
-datestamp = "1320513335"
+datestamp = "1337863313"
 

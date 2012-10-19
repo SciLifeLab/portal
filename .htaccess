@@ -129,10 +129,3 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
-
-AuthType Shibboleth
-  ShibRequireSession Off
-  # the following single line is only valid for Shib2
-  ShibUseHeaders On
-  require shibboleth
-
