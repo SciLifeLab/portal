@@ -1,0 +1,37 @@
+<?php
+define('EXAMPLE_OG_REALM', 'example_og_override');
+define('EXAMPLE_OG_GRANT_ID', 0);
+
+/**
+ * Implements hook_node_grants().
+ */
+function example_node_grants($account, $op) {
+  if ($op == 'view') {
+    $grants = array();
+    // check og permission, and request the node_access record for the custom realm
+    if (user_access('administer group')){
+      $grants[EXAMPLE_OG_REALM] = array(EXAMPLE_OG_GRANT_ID);
+    }
+    return $grants;
+  }
+}
+
+/**
+ * Implements hook_node_access_records().
+ */
+function example_node_access_records($node) {
+    // When the node is saved, add a record to the node_access table.
+    $grants = array();
+    if ($group = og_get_group('node', $node->nid)) {
+      $grants[] = array(
+      'realm' => EXAMPLE_OG_REALM,
+      'gid' => EXAMPLE_OG_GRANT_ID,
+      'grant_view' => 1,
+      'grant_update' => 0,
+      'grant_delete' => 0,
+      'priority' => 0,
+      );
+    }
+    return $grants;
+}
+?>

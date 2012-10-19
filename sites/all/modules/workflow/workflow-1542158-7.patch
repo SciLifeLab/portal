@@ -1,0 +1,150 @@
+diff --git a/sites/all/modules/workflow/workflow.module b/sites/all/modules/workflow/workflow.module
+index 0d64954..f86b988 100644
+--- a/sites/all/modules/workflow/workflow.module
++++ b/sites/all/modules/workflow/workflow.module
+@@ -553,75 +553,80 @@ function workflow_node_form(&$form, $form_state, $title, $name, $current, $choic
+  * @return array
+  */
+ function workflow_form_alter(&$form, &$form_state, $form_id) {
+-  // Ignore all forms except comment forms and node editing forms.
+-  if ((isset($form['#node']) && $form_id == 'comment_node_' . $form['#node']->type . '_form')
+-    || (isset($form['#node']->type) && isset($form['#node']) && $form['#node']->type . '_node_form' == $form_id)) {
+-    // Skip if there are no workflows.
+-    if (isset($form['#node'])) {
+-      $node = $form['#node'];
+-      // Abort if user does not want to display workflow form on node editing form.
+-      if (!in_array('node', variable_get('workflow_' . $form['#node']->type, array('node')))) {
+-        return;
+-      }
++  if (!isset($form['#node'])) {
++    return;
++  }
++  
++  $node = $form['#node'];
++  
++  // List of supported forms
++  $form_map = array(
++    "node" => $node->type . '_node_form',
++    "comment" => 'comment_node_' . $node->type . '_form',
++  );
++  
++  $form_type = "";
++  foreach ($form_map as $ftype => $fid) {
++    if($fid == $form_id) {
++      $form_type = $ftype;
++      break;
+     }
+-    else {
+-      $node = node_load($form['nid']['#value']);
+-      $type = $node->type;
+-      // Abort if user does not want to display workflow form on node editing form.
+-      if (!in_array('comment', variable_get('workflow_' . $type, array('node')))) {
+-        return;
++  }
++
++  // Do not show workflow form if not the right form or if not allowed
++  if (empty($form_type) || !in_array($form_type, variable_get('workflow_' . $node->type, array('node'))) ) { 
++    return;
++  }
++  
++  if ($workflow = workflow_get_workflow_type_map_by_type($node->type)) {
++    $choices = workflow_field_choices($node);
++    $workflow = workflow_get_workflows_by_wid($workflow->wid);
++    $states = workflow_get_workflow_states_by_wid($workflow->wid);
++    // If this is a preview, the current state should come from
++    // the form values, not the node, as the user may have changed
++    // the state.
++    $current = isset($form_state['values']['workflow']) ? $form_state['values']['workflow'] : workflow_node_current_state($node);
++    $min = 2; // Our current status, and our new status.
++    foreach ($states as $state) {
++      if ($state->sid == $current) {
++        $min = $state->status == t('(creation)') ? 1 : 2;
+       }
+     }
+-    if ($workflow = workflow_get_workflow_type_map_by_type($node->type)) {
+-      $choices = workflow_field_choices($node);
+-      $workflow = workflow_get_workflows_by_wid($workflow->wid);
+-      $states = workflow_get_workflow_states_by_wid($workflow->wid);
+-      // If this is a preview, the current state should come from
+-      // the form values, not the node, as the user may have changed
+-      // the state.
+-      $current = isset($form_state['values']['workflow']) ? $form_state['values']['workflow'] : workflow_node_current_state($node);
+-      $min = 2; // Our current status, and our new status.
+-      foreach ($states as $state) {
+-        if ($state->sid == $current) {
+-          $min = $state->status == t('(creation)') ? 1 : 2;
+-        }
+-      }
+-      // Stop if user has no new target state(s) to choose.
+-      if (count($choices) < $min) {
+-        return;
+-      }
+-      $form['#wf'] = $workflow;
+-      $name = check_plain($workflow->name);
+-      // If the current node state is not one of the choices, pick first choice.
+-      // We know all states in $choices are states that user has permission to
+-      // go to because workflow_field_choices() has already checked that.
+-      if (!isset($choices[$current])) {
+-        $array = array_keys($choices);
+-        $current = $array[0];
+-      }
+-      if (sizeof($choices) > 1) {
+-        $form['workflow'] = array(
+-          '#type' => 'fieldset',
+-          '#title' => t('@name', array('@name' => $name)),
+-          '#collapsible' => TRUE,
+-          '#collapsed' => FALSE,
+-          '#weight' => 10,
+-        );
+-      }
+-      $timestamp = NULL;
+-      $comment = '';
+-      // See if scheduling information is present.
+-      if (isset($node->workflow_scheduled_timestamp) && isset($node->workflow_scheduled_sid)) {
+-        // The default value should be the upcoming sid.
+-        $current = $node->workflow_scheduled_sid;
+-        $timestamp = $node->workflow_scheduled_timestamp;
+-        $comment = $node->workflow_scheduled_comment;
+-      }
+-      if (isset($form_state['values']['workflow_comment'])) {
+-        $comment = $form_state['values']['workflow_comment'];
+-      }
+-      workflow_node_form($form, $form_state, $name, $name, $current, $choices, $timestamp, $comment);
++    // Stop if user has no new target state(s) to choose.
++    if (count($choices) < $min) {
++      return;
++    }
++    $form['#wf'] = $workflow;
++    $name = check_plain($workflow->name);
++    // If the current node state is not one of the choices, pick first choice.
++    // We know all states in $choices are states that user has permission to
++    // go to because workflow_field_choices() has already checked that.
++    if (!isset($choices[$current])) {
++      $array = array_keys($choices);
++      $current = $array[0];
++    }
++    if (sizeof($choices) > 1) {
++      $form['workflow'] = array(
++        '#type' => 'fieldset',
++        '#title' => t('@name', array('@name' => $name)),
++        '#collapsible' => TRUE,
++        '#collapsed' => FALSE,
++        '#weight' => 10,
++      );
++    }
++    $timestamp = NULL;
++    $comment = '';
++    // See if scheduling information is present.
++    if (isset($node->workflow_scheduled_timestamp) && isset($node->workflow_scheduled_sid)) {
++      // The default value should be the upcoming sid.
++      $current = $node->workflow_scheduled_sid;
++      $timestamp = $node->workflow_scheduled_timestamp;
++      $comment = $node->workflow_scheduled_comment;
++    }
++    if (isset($form_state['values']['workflow_comment'])) {
++      $comment = $form_state['values']['workflow_comment'];
+     }
++    workflow_node_form($form, $form_state, $name, $name, $current, $choices, $timestamp, $comment);
+   }
+ }
+ 

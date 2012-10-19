@@ -1,0 +1,3 @@
+name = platform admin all og
+description = lets the role platform admin get access to all group contene even if it is private.
+core = 7.x
