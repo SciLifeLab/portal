@@ -1,6 +1,14 @@
 <?php
 // Sky by Adaptivethemes.com
 
+function sky_form_user_login_block_alter(&$form) {
+$form['links']['#weight'] = 100;
+
+}
+
+
+
+
 /**
  * Override description above field
  */
