@@ -4,6 +4,25 @@
  * @file
  * Rules extensions for Node Clone, allowing cloning a node as an action.
  */
+// implementation of 'hook_rules_event_info'
+// required to let Rules know about a new 'clone node' event
+function clone_rules_event_info() {
+$items = array(
+'node_clone' => array(
+'label' => t('After cloning a node'),
+'group' => t('Node'),
+'variables' => array(
+'cloned_node' => array('type' => 'node', 'label' => t('The cloned node')),
+'original_node' => array('type' => 'node', 'label' => t('The original node')),
+),
+),
+);
+return $items;
+}
+
+
+
+
 
 /**
  * Implements hook_rules_action_info(). 

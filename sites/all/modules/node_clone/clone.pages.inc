@@ -210,6 +210,9 @@ function clone_node_save($nid) {
         $node->book['mlid'] = NULL;
         $node->book['has_children'] = 0;
       }
+      if (isset($node->workflow)) {
+      $node->workflow = 2;
+	}
       $node->path = NULL;
       $node->files = array();
       $node->title = t('Clone of !title', array('!title' => $node->title));
@@ -229,6 +232,9 @@ function clone_node_save($nid) {
       drupal_alter('clone_node', $node, $context);
 
       node_save($node);
+      if(module_exists('rules')) {
+	rules_invoke_event('node_clone', $node, $original_node);
+	}
       return $node->nid;
     }
   }
