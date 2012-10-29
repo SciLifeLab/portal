@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Genomics content type order feature.
+ */
+
+include_once 'genomics_content_type_order.features.inc';
