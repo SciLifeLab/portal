@@ -3,8 +3,56 @@
 
 function sky_form_user_login_block_alter(&$form) {
 $form['links']['#weight'] = 100;
-
 }
+
+
+/**
+ * Override description above field
+ */
+
+function sky_text_format_wrapper($variables) {
+  $element = $variables['element'];
+  $output = '<div class="text-format-wrapper">';
+  $output .= $element['#children'];
+
+  if (!empty($element['#description'])) { 
+    // The string in the HTML to insert the description after
+    $sstr = '<div class="form-textarea-wrapper resizable">';
+    // The string to insert 
+    $rstr = $sstr . '<div class="description">' . $element['#description'] . '</div>';
+    $output = str_replace($sstr, $rstr, $output);
+  }
+  $output .= "</div>\n";
+
+  return $output;
+}
+
+function sky_form_element($variables) {
+  $element = $variables['element'];
+  $value = $variables['element']['#children'];
+
+  $wrapper_classes = array(
+    'form-item',
+  );
+  $output = '<div class="' . implode(' ', $wrapper_classes) . '" id="' . $element['#id'] . '-wrapper">' . "\n";
+  $required = !empty($element['#required']) ? '<span class="form-required" title="' . t('This field is required.') . '">*</span>' : '';
+
+  if (!empty($element['#title'])) {
+    $title = $element['#title'];
+    $output .= '<label for="' . $element['#id'] . '">' . t('!title: !required', array('!title' => filter_xss_admin($title), '!required' => $required)) . "</label>\n";
+  }
+
+  if (!empty($element['#description'])) {
+    $output .= ' <div class="description">' . $element['#description'] . "</div>\n";
+  }
+
+  $output .= '<div id="'. $element['#id'].'">' . $value . '</div>' . "\n";
+
+  $output .= "</div>\n";
+
+  return $output;
+}
+
 
 /**
  * Override or insert variables into the html template.
