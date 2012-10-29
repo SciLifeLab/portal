@@ -1,0 +1,22 @@
+diff --git a/sites/all/modules/content_type_extras/content_type_extras.module b/sites/all/modules/content_type_extras/content_type_extras.module
+index 7f2e488..aab4a14 100644
+--- a/sites/all/modules/content_type_extras/content_type_extras.module
++++ b/sites/all/modules/content_type_extras/content_type_extras.module
+@@ -99,7 +99,7 @@ function content_type_extras_form_alter(&$form, &$form_state, $form_id) {
+   // This is a list of node form ids to omit from being processed, since they don't
+   // play nice with content_type_extras.
+   $exclude_node_form = array(
+-    'subscriptions_ui_node_form',
++    'subscriptions_ui_node_form','field_collection_item_form',
+   );
+   
+   // node_type_form = Content type edit forms.
+@@ -222,7 +222,7 @@ function content_type_extras_form_alter(&$form, &$form_state, $form_id) {
+     $form['fields']['_add_new_field']['field_name']['#maxlength'] = 26;
+     $form['fields']['_add_new_field']['field_name']['#description'] .= t(' - <span class="characters">26</span> characters max.');
+     // The field_group module does the same thing, so if that is enabled, handle it the same way
+-    if (module_exists('field_group')) {
++    if (module_exists('field_group') && isset($form['fields']['_add_new_group']['group_name']['#description'])) {
+       $form['fields']['_add_new_group']['group_name']['#maxlength'] = 26;
+       $form['fields']['_add_new_group']['group_name']['#description'] .= t(' - <span class="characters">26</span> characters max.');
+     }
