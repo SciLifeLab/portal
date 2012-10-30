@@ -13,8 +13,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_link_to_reference',
-    'dependee' => 'field_order_info_supported_speci',
+    'dependent' => 'field_ordinf_reflink',
+    'dependee' => 'field_ordinf_species',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -99,8 +99,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_genome_size_',
-    'dependee' => 'field_order_info_supported_speci',
+    'dependent' => 'field_ordinf_genome_size',
+    'dependee' => 'field_ordinf_species',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -186,7 +186,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_flx_method',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -272,7 +272,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_flx_library',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -443,8 +443,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_total_number_of_picotiter_',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_flx_totnum_picotiter',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -529,8 +529,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_regions_per_plate',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_flx_reg_per_plate',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -615,8 +615,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_instrument',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_illumina_instrument',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -702,7 +702,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_number_of_lanes',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -787,8 +787,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_hiseq_config',
-    'dependee' => 'field_instrument',
+    'dependent' => 'field_illumina_hiseq_conf',
+    'dependee' => 'field_illumina_instrument',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -860,10 +860,10 @@ function genomics_content_type_order_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => '1',
-      'value_form' => 'HiSeq',
+      'value_form' => 'HiSeq standard mode',
       'value' => array(
         0 => array(
-          'value' => 'HiSeq',
+          'value' => 'HiSeq standard mode',
         ),
       ),
       'values' => array(),
@@ -873,7 +873,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_hiseq_config',
+    'dependent' => 'field_illumina_hiseq_conf',
     'dependee' => 'field_illumina_paired_end',
     'options' => array(
       'state' => 'checked',
@@ -953,7 +953,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_hiseq_config',
+    'dependent' => 'field_illumina_hiseq_conf',
     'dependee' => 'field_illumina_paired_end',
     'options' => array(
       'state' => 'visible',
@@ -1035,8 +1035,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_hiseq_config_other',
-    'dependee' => 'field_hiseq_config',
+    'dependent' => 'field_illumina_hiseq_conf_other',
+    'dependee' => 'field_illumina_hiseq_conf',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1121,7 +1121,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_hiseq_config_other',
+    'dependent' => 'field_illumina_hiseq_conf_other',
     'dependee' => 'field_illumina_paired_end',
     'options' => array(
       'state' => 'visible',
@@ -1201,8 +1201,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_miseq_config',
-    'dependee' => 'field_instrument',
+    'dependent' => 'field_illumina_miseq_conf',
+    'dependee' => 'field_illumina_instrument',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1287,8 +1287,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_miseq_config_other',
-    'dependee' => 'field_miseq_config',
+    'dependent' => 'field_illumina_miseq_conf_other',
+    'dependee' => 'field_illumina_miseq_conf',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1373,8 +1373,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_miseq_config_other',
-    'dependee' => 'field_instrument',
+    'dependent' => 'field_illumina_miseq_conf_other',
+    'dependee' => 'field_illumina_instrument',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1460,7 +1460,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_solid_instrument',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1546,7 +1546,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_wgs_mp_insert_length',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1631,8 +1631,180 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
+    'dependent' => 'field_wgs_mp_insert_length',
+    'dependee' => 'field_solid_sample_type',
+    'options' => array(
+      'state' => 'visible',
+      'condition' => 'value',
+      'grouping' => 'AND',
+      'effect' => 'slide',
+      'effect_options' => array(
+        'speed' => '400',
+      ),
+      'element_view' => array(
+        1 => '1',
+        2 => '2',
+        5 => 0,
+        3 => 0,
+        4 => 0,
+      ),
+      'element_view_per_role' => 0,
+      'element_view_roles' => array(
+        1 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+      ),
+      'element_edit' => array(
+        1 => '1',
+        3 => 0,
+      ),
+      'element_edit_per_role' => 0,
+      'element_edit_roles' => array(
+        1 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          3 => 0,
+        ),
+      ),
+      'selector' => '',
+      'values_set' => '1',
+      'value_form' => 'DNA',
+      'value' => array(
+        0 => array(
+          'value' => 'DNA',
+        ),
+      ),
+      'values' => array(),
+    ),
+  );
+
+  $items[] = array(
+    'entity' => 'node',
+    'bundle' => 'order',
+    'dependent' => 'field_wgs_mp_insert_length',
+    'dependee' => 'field_solid_dna_library',
+    'options' => array(
+      'state' => 'visible',
+      'condition' => 'value',
+      'grouping' => 'AND',
+      'effect' => 'slide',
+      'effect_options' => array(
+        'speed' => '400',
+      ),
+      'element_view' => array(
+        1 => '1',
+        2 => '2',
+        5 => 0,
+        3 => 0,
+        4 => 0,
+      ),
+      'element_view_per_role' => 0,
+      'element_view_roles' => array(
+        1 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+      ),
+      'element_edit' => array(
+        1 => '1',
+        3 => 0,
+      ),
+      'element_edit_per_role' => 0,
+      'element_edit_roles' => array(
+        1 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          3 => 0,
+        ),
+      ),
+      'selector' => '',
+      'values_set' => '1',
+      'value_form' => 'Normal/Whole Genome',
+      'value' => array(
+        0 => array(
+          'value' => 'Normal/Whole Genome',
+        ),
+      ),
+      'values' => array(),
+    ),
+  );
+
+  $items[] = array(
+    'entity' => 'node',
+    'bundle' => 'order',
     'dependent' => 'field_read_length',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1718,7 +1890,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_sample_type',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -1975,7 +2147,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_illumintype_of_dna_library',
+    'dependent' => 'field_illumina_dnalib_type',
     'dependee' => 'field_illumina_sample_type',
     'options' => array(
       'state' => 'visible',
@@ -2062,7 +2234,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_dna_type_of_enri',
-    'dependee' => 'field_illumintype_of_dna_library',
+    'dependee' => 'field_illumina_dnalib_type',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -2318,7 +2490,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_paired_end',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -2404,7 +2576,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_hiseq_cycles_tot',
-    'dependee' => 'field_instrument',
+    'dependee' => 'field_illumina_instrument',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -2476,10 +2648,10 @@ function genomics_content_type_order_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => '1',
-      'value_form' => 'HiSeq',
+      'value_form' => 'HiSeq standard mode',
       'value' => array(
         0 => array(
-          'value' => 'HiSeq',
+          'value' => 'HiSeq standard mode',
         ),
       ),
       'values' => array(),
@@ -2738,7 +2910,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_illumina_hiseq_pe_fals_oth',
-    'dependee' => 'field_instrument',
+    'dependee' => 'field_illumina_instrument',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -2808,10 +2980,10 @@ function genomics_content_type_order_conditional_fields_default_fields() {
       ),
       'selector' => '',
       'values_set' => '1',
-      'value_form' => 'HiSeq',
+      'value_form' => 'HiSeq standard mode',
       'value' => array(
         0 => array(
-          'value' => 'HiSeq',
+          'value' => 'HiSeq standard mode',
         ),
       ),
       'values' => array(),
@@ -2822,7 +2994,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_solid_paired_end',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -2908,7 +3080,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_solid_sample_type',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3162,7 +3334,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_solid_number_of_lanes',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3247,8 +3419,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_iontorrent_read_length',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_ion_tor_rlength',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3331,7 +3503,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_iontorrent_read_length',
+    'dependent' => 'field_ion_tor_rlength',
     'dependee' => 'field_ion_instrument_type',
     'options' => array(
       'state' => 'visible',
@@ -3415,8 +3587,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_ionproton_read_length',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_ion_pro_rlength',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3499,7 +3671,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_ionproton_read_length',
+    'dependent' => 'field_ion_pro_rlength',
     'dependee' => 'field_ion_instrument_type',
     'options' => array(
       'state' => 'visible',
@@ -3584,7 +3756,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_ion_sample_type',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3835,8 +4007,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_barcoding_required',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_ion_barcode_req',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -3921,8 +4093,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_torrent_throughput_chip',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_ion_tor_thrput_chip',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -4007,7 +4179,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_torrent_throughput_chip',
+    'dependent' => 'field_ion_tor_thrput_chip',
     'dependee' => 'field_ion_instrument_type',
     'options' => array(
       'state' => 'visible',
@@ -4091,8 +4263,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_proton_throughput_chip',
-    'dependee' => 'field_platform',
+    'dependent' => 'field_ion_pro_thrput_chip',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -4175,7 +4347,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_proton_throughput_chip',
+    'dependent' => 'field_ion_pro_thrput_chip',
     'dependee' => 'field_ion_instrument_type',
     'options' => array(
       'state' => 'visible',
@@ -4345,8 +4517,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_other_species',
-    'dependee' => 'field_order_info_supported_speci',
+    'dependent' => 'field_ordinf_species_oth',
+    'dependee' => 'field_ordinf_species',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -4432,7 +4604,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
     'entity' => 'node',
     'bundle' => 'order',
     'dependent' => 'field_ion_instrument_type',
-    'dependee' => 'field_platform',
+    'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
       'condition' => 'value',
@@ -4517,8 +4689,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_new_project_name',
-    'dependee' => 'field_existing_uppnex_project',
+    'dependent' => 'field_new_upnx_proj_name',
+    'dependee' => 'field_geninfo_ex_uppnex_proj',
     'options' => array(
       'state' => '!visible',
       'condition' => '!empty',
@@ -4599,8 +4771,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_tech_admin_name',
-    'dependee' => 'field_existing_uppnex_project',
+    'dependent' => 'field_new_upnx_tadmin_name',
+    'dependee' => 'field_geninfo_ex_uppnex_proj',
     'options' => array(
       'state' => '!visible',
       'condition' => '!empty',
@@ -4679,8 +4851,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_tech_admin_email',
-    'dependee' => 'field_existing_uppnex_project',
+    'dependent' => 'field_new_upnx_tadmin_email',
+    'dependee' => 'field_geninfo_ex_uppnex_proj',
     'options' => array(
       'state' => '!visible',
       'condition' => '!empty',
@@ -4761,8 +4933,8 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_other_uppnex_project_membe',
-    'dependee' => 'field_existing_uppnex_project',
+    'dependent' => 'field_new_upnx_oth_member',
+    'dependee' => 'field_geninfo_ex_uppnex_proj',
     'options' => array(
       'state' => '!visible',
       'condition' => '!empty',
@@ -4771,6 +4943,86 @@ function genomics_content_type_order_conditional_fields_default_fields() {
       'effect_options' => array(
         'speed' => '400',
       ),
+      'element_view' => array(
+        1 => '1',
+        2 => '2',
+        5 => 0,
+        3 => 0,
+        4 => 0,
+      ),
+      'element_view_per_role' => 0,
+      'element_view_roles' => array(
+        1 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          2 => '2',
+          5 => 0,
+          3 => 0,
+          4 => 0,
+        ),
+      ),
+      'element_edit' => array(
+        1 => '1',
+        3 => 0,
+      ),
+      'element_edit_per_role' => 0,
+      'element_edit_roles' => array(
+        1 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        2 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        4 => array(
+          1 => '1',
+          3 => 0,
+        ),
+        3 => array(
+          1 => '1',
+          3 => 0,
+        ),
+      ),
+      'selector' => '',
+      'values_set' => 1,
+      'value' => array(),
+      'values' => array(),
+      'value_form' => array(),
+    ),
+  );
+
+  $items[] = array(
+    'entity' => 'node',
+    'bundle' => 'order',
+    'dependent' => 'field_new_upnx_oth_member',
+    'dependee' => 'field_geninfo_ex_uppnex_proj',
+    'options' => array(
+      'state' => 'disabled',
+      'condition' => '!empty',
+      'grouping' => 'AND',
+      'effect' => FALSE,
+      'effect_options' => array(),
       'element_view' => array(
         1 => '1',
         2 => '2',
