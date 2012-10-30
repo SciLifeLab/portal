@@ -10,14 +10,14 @@
 function genomics_content_type_order_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'field_collection_item-field_new_upnx_oth_member-field_new_upnx_oth_email'.
-  $fields['field_collection_item-field_new_upnx_oth_member-field_new_upnx_oth_email'] = array(
+  // Exported field: 'field_collection_item-field_other_uppnex_project_membe-field_project_members_email'.
+  $fields['field_collection_item-field_other_uppnex_project_membe-field_project_members_email'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_new_upnx_oth_email',
+      'field_name' => 'field_project_members_email',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -30,7 +30,7 @@ function genomics_content_type_order_field_default_fields() {
       'type' => 'email',
     ),
     'field_instance' => array(
-      'bundle' => 'field_new_upnx_oth_member',
+      'bundle' => 'field_other_uppnex_project_membe',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -44,7 +44,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_new_upnx_oth_email',
+      'field_name' => 'field_project_members_email',
       'label' => 'Email',
       'required' => 0,
       'settings' => array(
@@ -62,8 +62,8 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'field_collection_item-field_new_upnx_oth_member-field_project_members_name'.
-  $fields['field_collection_item-field_new_upnx_oth_member-field_project_members_name'] = array(
+  // Exported field: 'field_collection_item-field_other_uppnex_project_membe-field_project_members_name'.
+  $fields['field_collection_item-field_other_uppnex_project_membe-field_project_members_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -95,7 +95,7 @@ function genomics_content_type_order_field_default_fields() {
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_new_upnx_oth_member',
+      'bundle' => 'field_other_uppnex_project_membe',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -128,14 +128,14 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-order-field_ion_barcode_req'.
-  $fields['node-order-field_ion_barcode_req'] = array(
+  // Exported field: 'node-order-field_barcoding_required'.
+  $fields['node-order-field_barcoding_required'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ion_barcode_req',
+      'field_name' => 'field_barcoding_required',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -179,7 +179,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ion_barcode_req',
+      'field_name' => 'field_barcoding_required',
       'label' => 'Barcoding required',
       'required' => 0,
       'settings' => array(
@@ -197,14 +197,14 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-order-field_bioinf_best_practice'.
-  $fields['node-order-field_bioinf_best_practice'] = array(
+  // Exported field: 'node-order-field_best_practice_basic_analys'.
+  $fields['node-order-field_best_practice_basic_analys'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_bioinf_best_practice',
+      'field_name' => 'field_best_practice_basic_analys',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -251,7 +251,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_bioinf_best_practice',
+      'field_name' => 'field_best_practice_basic_analys',
       'label' => 'Best practice basic analysis',
       'required' => 0,
       'settings' => array(
@@ -269,14 +269,14 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-order-field_bioinf_expertise'.
-  $fields['node-order-field_bioinf_expertise'] = array(
+  // Exported field: 'node-order-field_bioinformatics_expertise_i'.
+  $fields['node-order-field_bioinformatics_expertise_i'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_bioinf_expertise',
+      'field_name' => 'field_bioinformatics_expertise_i',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -323,7 +323,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_bioinf_expertise',
+      'field_name' => 'field_bioinformatics_expertise_i',
       'label' => 'Does your group have bioinformatics expertise?',
       'required' => 0,
       'settings' => array(
@@ -341,14 +341,14 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_coverage'.
-  $fields['node-order-field_ordinf_coverage'] = array(
+  // Exported field: 'node-order-field_coverage'.
+  $fields['node-order-field_coverage'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_coverage',
+      'field_name' => 'field_coverage',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -394,7 +394,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_coverage',
+      'field_name' => 'field_coverage',
       'label' => 'Coverage',
       'required' => 0,
       'settings' => array(
@@ -413,14 +413,14 @@ function genomics_content_type_order_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-order-field_geninfo_ex_uppnex_proj'.
-  $fields['node-order-field_geninfo_ex_uppnex_proj'] = array(
+  // Exported field: 'node-order-field_existing_uppnex_project'.
+  $fields['node-order-field_existing_uppnex_project'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_geninfo_ex_uppnex_proj',
+      'field_name' => 'field_existing_uppnex_project',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -467,7 +467,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_geninfo_ex_uppnex_proj',
+      'field_name' => 'field_existing_uppnex_project',
       'label' => 'Existing UPPNEX project',
       'required' => 0,
       'settings' => array(
@@ -486,14 +486,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_date_samp_dev'.
-  $fields['node-order-field_ordinf_date_samp_dev'] = array(
+  // Exported field: 'node-order-field_expected_date_of_sample_de'.
+  $fields['node-order-field_expected_date_of_sample_de'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_date_samp_dev',
+      'field_name' => 'field_expected_date_of_sample_de',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -545,7 +545,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_date_samp_dev',
+      'field_name' => 'field_expected_date_of_sample_de',
       'label' => 'Expected date of sample delivery to SciLifeLab',
       'required' => 0,
       'settings' => array(
@@ -572,14 +572,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_geninfo_files'.
-  $fields['node-order-field_geninfo_files'] = array(
+  // Exported field: 'node-order-field_file_attachments'.
+  $fields['node-order-field_file_attachments'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_geninfo_files',
+      'field_name' => 'field_file_attachments',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -626,7 +626,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_geninfo_files',
+      'field_name' => 'field_file_attachments',
       'label' => 'File attachments',
       'required' => 0,
       'settings' => array(
@@ -852,14 +852,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_genome_size'.
-  $fields['node-order-field_ordinf_genome_size'] = array(
+  // Exported field: 'node-order-field_genome_size_'.
+  $fields['node-order-field_genome_size_'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_genome_size',
+      'field_name' => 'field_genome_size_',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -905,7 +905,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_genome_size',
+      'field_name' => 'field_genome_size_',
       'label' => 'Genome size ',
       'required' => 0,
       'settings' => array(
@@ -924,14 +924,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_left_lib'.
-  $fields['node-order-field_ordinf_left_lib'] = array(
+  // Exported field: 'node-order-field_handling_of_leftover_libra'.
+  $fields['node-order-field_handling_of_leftover_libra'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_left_lib',
+      'field_name' => 'field_handling_of_leftover_libra',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -979,7 +979,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_left_lib',
+      'field_name' => 'field_handling_of_leftover_libra',
       'label' => 'Handling of leftover libraries',
       'required' => 0,
       'settings' => array(
@@ -995,14 +995,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_left_sample'.
-  $fields['node-order-field_ordinf_left_sample'] = array(
+  // Exported field: 'node-order-field_handling_of_leftover_sampl'.
+  $fields['node-order-field_handling_of_leftover_sampl'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_left_sample',
+      'field_name' => 'field_handling_of_leftover_sampl',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -1050,7 +1050,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_left_sample',
+      'field_name' => 'field_handling_of_leftover_sampl',
       'label' => 'Handling of leftover samples',
       'required' => 0,
       'settings' => array(
@@ -1066,14 +1066,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_hiseq_conf'.
-  $fields['node-order-field_illumina_hiseq_conf'] = array(
+  // Exported field: 'node-order-field_hiseq_config'.
+  $fields['node-order-field_hiseq_config'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_hiseq_conf',
+      'field_name' => 'field_hiseq_config',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -1117,7 +1117,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_hiseq_conf',
+      'field_name' => 'field_hiseq_config',
       'label' => 'Hiseq Number of cycles (total)',
       'required' => 0,
       'settings' => array(
@@ -1133,14 +1133,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_hiseq_conf_other'.
-  $fields['node-order-field_illumina_hiseq_conf_other'] = array(
+  // Exported field: 'node-order-field_hiseq_config_other'.
+  $fields['node-order-field_hiseq_config_other'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_hiseq_conf_other',
+      'field_name' => 'field_hiseq_config_other',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -1186,7 +1186,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_hiseq_conf_other',
+      'field_name' => 'field_hiseq_config_other',
       'label' => 'Hiseq other: Please describe',
       'required' => 0,
       'settings' => array(
@@ -1819,14 +1819,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_dnalib_type'.
-  $fields['node-order-field_illumina_dnalib_type'] = array(
+  // Exported field: 'node-order-field_illumintype_of_dna_library'.
+  $fields['node-order-field_illumintype_of_dna_library'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_dnalib_type',
+      'field_name' => 'field_illumintype_of_dna_library',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -1870,7 +1870,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_dnalib_type',
+      'field_name' => 'field_illumintype_of_dna_library',
       'label' => 'Type of DNA library',
       'required' => 0,
       'settings' => array(
@@ -1958,14 +1958,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_instrument'.
-  $fields['node-order-field_illumina_instrument'] = array(
+  // Exported field: 'node-order-field_instrument'.
+  $fields['node-order-field_instrument'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_instrument',
+      'field_name' => 'field_instrument',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2009,7 +2009,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_instrument',
+      'field_name' => 'field_instrument',
       'label' => 'Illumina Instrument',
       'required' => 0,
       'settings' => array(
@@ -2286,14 +2286,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ion_pro_rlength'.
-  $fields['node-order-field_ion_pro_rlength'] = array(
+  // Exported field: 'node-order-field_ionproton_read_length'.
+  $fields['node-order-field_ionproton_read_length'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ion_pro_rlength',
+      'field_name' => 'field_ionproton_read_length',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -2332,7 +2332,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ion_pro_rlength',
+      'field_name' => 'field_ionproton_read_length',
       'label' => 'IonProton Read length',
       'required' => 0,
       'settings' => array(
@@ -2348,14 +2348,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ion_tor_rlength'.
-  $fields['node-order-field_ion_tor_rlength'] = array(
+  // Exported field: 'node-order-field_iontorrent_read_length'.
+  $fields['node-order-field_iontorrent_read_length'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ion_tor_rlength',
+      'field_name' => 'field_iontorrent_read_length',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -2395,7 +2395,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ion_tor_rlength',
+      'field_name' => 'field_iontorrent_read_length',
       'label' => 'IonTorrent Read length',
       'required' => 0,
       'settings' => array(
@@ -2411,14 +2411,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_reflink'.
-  $fields['node-order-field_ordinf_reflink'] = array(
+  // Exported field: 'node-order-field_link_to_reference'.
+  $fields['node-order-field_link_to_reference'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_reflink',
+      'field_name' => 'field_link_to_reference',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2464,7 +2464,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_reflink',
+      'field_name' => 'field_link_to_reference',
       'label' => 'Link to reference',
       'required' => 0,
       'settings' => array(
@@ -2483,14 +2483,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_miseq_conf'.
-  $fields['node-order-field_illumina_miseq_conf'] = array(
+  // Exported field: 'node-order-field_miseq_config'.
+  $fields['node-order-field_miseq_config'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_miseq_conf',
+      'field_name' => 'field_miseq_config',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2535,7 +2535,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_miseq_conf',
+      'field_name' => 'field_miseq_config',
       'label' => 'Miseq Number of cycles (total)',
       'required' => 0,
       'settings' => array(
@@ -2551,14 +2551,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_illumina_miseq_conf_other'.
-  $fields['node-order-field_illumina_miseq_conf_other'] = array(
+  // Exported field: 'node-order-field_miseq_config_other'.
+  $fields['node-order-field_miseq_config_other'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_illumina_miseq_conf_other',
+      'field_name' => 'field_miseq_config_other',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2604,7 +2604,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_illumina_miseq_conf_other',
+      'field_name' => 'field_miseq_config_other',
       'label' => 'Miseq other Please describe',
       'required' => 0,
       'settings' => array(
@@ -2623,14 +2623,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_new_upnx_proj_name'.
-  $fields['node-order-field_new_upnx_proj_name'] = array(
+  // Exported field: 'node-order-field_new_project_name'.
+  $fields['node-order-field_new_project_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_new_upnx_proj_name',
+      'field_name' => 'field_new_project_name',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2676,7 +2676,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_new_upnx_proj_name',
+      'field_name' => 'field_new_project_name',
       'label' => 'New project name',
       'required' => 0,
       'settings' => array(
@@ -2695,14 +2695,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_num_samp'.
-  $fields['node-order-field_ordinf_num_samp'] = array(
+  // Exported field: 'node-order-field_number_of_samples'.
+  $fields['node-order-field_number_of_samples'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_num_samp',
+      'field_name' => 'field_number_of_samples',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2740,7 +2740,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_num_samp',
+      'field_name' => 'field_number_of_samples',
       'label' => 'Number of samples',
       'required' => 0,
       'settings' => array(
@@ -2760,14 +2760,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_species'.
-  $fields['node-order-field_ordinf_species'] = array(
+  // Exported field: 'node-order-field_order_info_supported_speci'.
+  $fields['node-order-field_order_info_supported_speci'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_species',
+      'field_name' => 'field_order_info_supported_speci',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2819,7 +2819,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_species',
+      'field_name' => 'field_order_info_supported_speci',
       'label' => 'Species',
       'required' => 1,
       'settings' => array(
@@ -2835,14 +2835,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_species_oth'.
-  $fields['node-order-field_ordinf_species_oth'] = array(
+  // Exported field: 'node-order-field_other_species'.
+  $fields['node-order-field_other_species'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_species_oth',
+      'field_name' => 'field_other_species',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2888,7 +2888,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_species_oth',
+      'field_name' => 'field_other_species',
       'label' => 'Other Species',
       'required' => 0,
       'settings' => array(
@@ -2907,14 +2907,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_new_upnx_oth_member'.
-  $fields['node-order-field_new_upnx_oth_member'] = array(
+  // Exported field: 'node-order-field_other_uppnex_project_membe'.
+  $fields['node-order-field_other_uppnex_project_membe'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_new_upnx_oth_member',
+      'field_name' => 'field_other_uppnex_project_membe',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -2951,7 +2951,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_new_upnx_oth_member',
+      'field_name' => 'field_other_uppnex_project_membe',
       'label' => 'Other UPPNEX project members',
       'required' => 0,
       'settings' => array(
@@ -2967,14 +2967,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_platform'.
-  $fields['node-order-field_ordinf_platform'] = array(
+  // Exported field: 'node-order-field_platform'.
+  $fields['node-order-field_platform'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_platform',
+      'field_name' => 'field_platform',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3019,7 +3019,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_platform',
+      'field_name' => 'field_platform',
       'label' => 'platform',
       'required' => 0,
       'settings' => array(
@@ -3035,14 +3035,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_bioinf_prev_exp_ngs'.
-  $fields['node-order-field_bioinf_prev_exp_ngs'] = array(
+  // Exported field: 'node-order-field_previous_experience_with_n'.
+  $fields['node-order-field_previous_experience_with_n'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_bioinf_prev_exp_ngs',
+      'field_name' => 'field_previous_experience_with_n',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3089,7 +3089,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_bioinf_prev_exp_ngs',
+      'field_name' => 'field_previous_experience_with_n',
       'label' => 'Does your group have previous experience with NGS data?',
       'required' => 0,
       'settings' => array(
@@ -3107,14 +3107,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ion_pro_thrput_chip'.
-  $fields['node-order-field_ion_pro_thrput_chip'] = array(
+  // Exported field: 'node-order-field_proton_throughput_chip'.
+  $fields['node-order-field_proton_throughput_chip'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ion_pro_thrput_chip',
+      'field_name' => 'field_proton_throughput_chip',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -3154,7 +3154,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ion_pro_thrput_chip',
+      'field_name' => 'field_proton_throughput_chip',
       'label' => 'Proton Throughput, chip',
       'required' => 0,
       'settings' => array(
@@ -3170,14 +3170,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_solid_rlength'.
-  $fields['node-order-field_solid_rlength'] = array(
+  // Exported field: 'node-order-field_read_length'.
+  $fields['node-order-field_read_length'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_solid_rlength',
+      'field_name' => 'field_read_length',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3220,7 +3220,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_solid_rlength',
+      'field_name' => 'field_read_length',
       'label' => 'Read length',
       'required' => 0,
       'settings' => array(
@@ -3236,14 +3236,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_flx_reg_per_plate'.
-  $fields['node-order-field_flx_reg_per_plate'] = array(
+  // Exported field: 'node-order-field_regions_per_plate'.
+  $fields['node-order-field_regions_per_plate'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_flx_reg_per_plate',
+      'field_name' => 'field_regions_per_plate',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3288,7 +3288,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_flx_reg_per_plate',
+      'field_name' => 'field_regions_per_plate',
       'label' => 'Regions per plate',
       'required' => 0,
       'settings' => array(
@@ -3695,14 +3695,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_special_req'.
-  $fields['node-order-field_ordinf_special_req'] = array(
+  // Exported field: 'node-order-field_special_requirements'.
+  $fields['node-order-field_special_requirements'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_special_req',
+      'field_name' => 'field_special_requirements',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3748,7 +3748,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_special_req',
+      'field_name' => 'field_special_requirements',
       'label' => 'Special requirements',
       'required' => 0,
       'settings' => array(
@@ -3767,14 +3767,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_new_upnx_tadmin_email'.
-  $fields['node-order-field_new_upnx_tadmin_email'] = array(
+  // Exported field: 'node-order-field_tech_admin_email'.
+  $fields['node-order-field_tech_admin_email'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_new_upnx_tadmin_email',
+      'field_name' => 'field_tech_admin_email',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3807,7 +3807,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_new_upnx_tadmin_email',
+      'field_name' => 'field_tech_admin_email',
       'label' => 'Tech admin email',
       'required' => 0,
       'settings' => array(
@@ -3825,14 +3825,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_new_upnx_tadmin_name'.
-  $fields['node-order-field_new_upnx_tadmin_name'] = array(
+  // Exported field: 'node-order-field_tech_admin_name'.
+  $fields['node-order-field_tech_admin_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_new_upnx_tadmin_name',
+      'field_name' => 'field_tech_admin_name',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3878,7 +3878,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_new_upnx_tadmin_name',
+      'field_name' => 'field_tech_admin_name',
       'label' => 'Tech admin name',
       'required' => 0,
       'settings' => array(
@@ -3897,14 +3897,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ion_tor_thrput_chip'.
-  $fields['node-order-field_ion_tor_thrput_chip'] = array(
+  // Exported field: 'node-order-field_torrent_throughput_chip'.
+  $fields['node-order-field_torrent_throughput_chip'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ion_tor_thrput_chip',
+      'field_name' => 'field_torrent_throughput_chip',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -3945,7 +3945,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ion_tor_thrput_chip',
+      'field_name' => 'field_torrent_throughput_chip',
       'label' => 'Torrent Throughput, chip',
       'required' => 0,
       'settings' => array(
@@ -3961,14 +3961,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_flx_totnum_picotiter'.
-  $fields['node-order-field_flx_totnum_picotiter'] = array(
+  // Exported field: 'node-order-field_total_number_of_picotiter_'.
+  $fields['node-order-field_total_number_of_picotiter_'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_flx_totnum_picotiter',
+      'field_name' => 'field_total_number_of_picotiter_',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -4006,7 +4006,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_flx_totnum_picotiter',
+      'field_name' => 'field_total_number_of_picotiter_',
       'label' => 'Total number of Picotiter-plates/runs ',
       'required' => 0,
       'settings' => array(
@@ -4026,14 +4026,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_solid_mate_pair'.
-  $fields['node-order-field_solid_mate_pair'] = array(
+  // Exported field: 'node-order-field_wgs_mp_insert_length'.
+  $fields['node-order-field_wgs_mp_insert_length'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_solid_mate_pair',
+      'field_name' => 'field_wgs_mp_insert_length',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -4078,7 +4078,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_solid_mate_pair',
+      'field_name' => 'field_wgs_mp_insert_length',
       'label' => 'Mate Pair',
       'required' => 0,
       'settings' => array(
@@ -4094,14 +4094,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_ordinf_scilife_node'.
-  $fields['node-order-field_ordinf_scilife_node'] = array(
+  // Exported field: 'node-order-field_which_scilifelab_node_shou'.
+  $fields['node-order-field_which_scilifelab_node_shou'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ordinf_scilife_node',
+      'field_name' => 'field_which_scilifelab_node_shou',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -4149,7 +4149,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ordinf_scilife_node',
+      'field_name' => 'field_which_scilifelab_node_shou',
       'label' => 'Which SciLifeLab node should do the job?',
       'required' => 0,
       'settings' => array(
@@ -4165,14 +4165,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_geninfo_cust_proj_name'.
-  $fields['node-order-field_geninfo_cust_proj_name'] = array(
+  // Exported field: 'node-order-field_your_project_name'.
+  $fields['node-order-field_your_project_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_geninfo_cust_proj_name',
+      'field_name' => 'field_your_project_name',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -4218,7 +4218,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_geninfo_cust_proj_name',
+      'field_name' => 'field_your_project_name',
       'label' => 'Your project name',
       'required' => 0,
       'settings' => array(
