@@ -34,7 +34,7 @@ sed -i 's/field_expected_date_of_sample_de/field_ordinf_date_samp_dev/' *
 sed -i 's/field_order_info_supported_speci/field_ordinf_species/' *
 sed -i 's/field_coverage/field_ordinf_coverage/' *
 sed -i 's/field_wgs_mp_insert_length/field_solid_mate_pair/' *
-
+sed -i 's/field_read_length/field_solid_rlength/' *
 
 
 

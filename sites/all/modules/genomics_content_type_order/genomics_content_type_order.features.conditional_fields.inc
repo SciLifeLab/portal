@@ -1803,7 +1803,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_read_length',
+    'dependent' => 'field_solid_rlength',
     'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',

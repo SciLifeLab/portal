@@ -3170,14 +3170,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_read_length'.
-  $fields['node-order-field_read_length'] = array(
+  // Exported field: 'node-order-field_solid_rlength'.
+  $fields['node-order-field_solid_rlength'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_read_length',
+      'field_name' => 'field_solid_rlength',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -3220,7 +3220,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_read_length',
+      'field_name' => 'field_solid_rlength',
       'label' => 'Read length',
       'required' => 0,
       'settings' => array(

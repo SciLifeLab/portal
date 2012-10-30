@@ -499,7 +499,7 @@ function genomics_content_type_order_field_group_info() {
     'children' => array(
       0 => 'field_solid_instrument',
       1 => 'field_solid_mate_pair',
-      2 => 'field_read_length',
+      2 => 'field_solid_rlength',
       3 => 'field_solid_paired_end',
       4 => 'field_solid_sample_type',
       5 => 'field_solid_dna_library',
@@ -533,7 +533,7 @@ function genomics_content_type_order_field_group_info() {
     'children' => array(
       0 => 'field_solid_instrument',
       1 => 'field_solid_mate_pair',
-      2 => 'field_read_length',
+      2 => 'field_solid_rlength',
       3 => 'field_solid_paired_end',
       4 => 'field_solid_sample_type',
       5 => 'field_solid_dna_library',
