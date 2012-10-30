@@ -1545,7 +1545,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_wgs_mp_insert_length',
+    'dependent' => 'field_solid_mate_pair',
     'dependee' => 'field_ordinf_platform',
     'options' => array(
       'state' => 'visible',
@@ -1631,7 +1631,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_wgs_mp_insert_length',
+    'dependent' => 'field_solid_mate_pair',
     'dependee' => 'field_solid_sample_type',
     'options' => array(
       'state' => 'visible',
@@ -1717,7 +1717,7 @@ function genomics_content_type_order_conditional_fields_default_fields() {
   $items[] = array(
     'entity' => 'node',
     'bundle' => 'order',
-    'dependent' => 'field_wgs_mp_insert_length',
+    'dependent' => 'field_solid_mate_pair',
     'dependee' => 'field_solid_dna_library',
     'options' => array(
       'state' => 'visible',

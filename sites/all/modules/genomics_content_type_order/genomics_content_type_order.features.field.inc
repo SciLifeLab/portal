@@ -4026,14 +4026,14 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
     ),
   );
 
-  // Exported field: 'node-order-field_wgs_mp_insert_length'.
-  $fields['node-order-field_wgs_mp_insert_length'] = array(
+  // Exported field: 'node-order-field_solid_mate_pair'.
+  $fields['node-order-field_solid_mate_pair'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_wgs_mp_insert_length',
+      'field_name' => 'field_solid_mate_pair',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -4078,7 +4078,7 @@ You can find a project list <a href=http://uppnex.uu.se/content/list-projects>he
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_wgs_mp_insert_length',
+      'field_name' => 'field_solid_mate_pair',
       'label' => 'Mate Pair',
       'required' => 0,
       'settings' => array(
