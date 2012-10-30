@@ -10,14 +10,14 @@
 function genomics_content_type_order_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'field_collection_item-field_new_upnx_oth_member-field_project_members_email'.
-  $fields['field_collection_item-field_new_upnx_oth_member-field_project_members_email'] = array(
+  // Exported field: 'field_collection_item-field_new_upnx_oth_member-field_new_upnx_oth_email'.
+  $fields['field_collection_item-field_new_upnx_oth_member-field_new_upnx_oth_email'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_project_members_email',
+      'field_name' => 'field_new_upnx_oth_email',
       'field_permissions' => array(
         'type' => '0',
       ),
@@ -44,7 +44,7 @@ function genomics_content_type_order_field_default_fields() {
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_project_members_email',
+      'field_name' => 'field_new_upnx_oth_email',
       'label' => 'Email',
       'required' => 0,
       'settings' => array(

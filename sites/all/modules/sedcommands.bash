@@ -35,7 +35,7 @@ sed -i 's/field_order_info_supported_speci/field_ordinf_species/' *
 sed -i 's/field_coverage/field_ordinf_coverage/' *
 sed -i 's/field_wgs_mp_insert_length/field_solid_mate_pair/' *
 sed -i 's/field_read_length/field_solid_rlength/' *
-
+sed -i 's/field_project_members_email/field_new_upnx_oth_email/' *
 
 
 
