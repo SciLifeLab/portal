@@ -1,4 +1,35 @@
+a.flag-action{
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+
+-moz-box-shadow:0 1px 0 rgba(0, 0, 0, 0.6);
+-webkit-box-shadow:0 1px 0 rgba(0, 0, 0, 0.6);
+box-shadow:0 1px 0 rgba(0, 0, 0, 0.6);
+
+background: -moz-linear-gradient(19% 75% 90deg, #FF4D01, #FF8924);
+
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FF8924), to(#FF4D01));
+
+color:#fff;
+float:left;
+font-family:arial,helvetica,sans-serif;
+font-size:15px;
+font-weight:bold;
+padding:5px 10px;
+}
+
+a.flag-action:hover{
+background: -moz-linear-gradient(19% 75% 90deg, #EB4701, #F58423);
+background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#F58423), to(#EB4701));
+}
+
+
+
+
+
 /* Styles to support the theme settings */
+
 
 /* Left */
 .hl-l #branding {

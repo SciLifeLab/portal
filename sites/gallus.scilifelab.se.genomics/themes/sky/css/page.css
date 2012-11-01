@@ -48,6 +48,14 @@ h1#site-name { /* 48px */
   margin: 0 0 0.2em 0;
   padding: 0;
 }
+
+.page-flag-confirm-flag h1#page-title{
+  
+  font-size: 1em;
+  margin: 0 0 0.2em 0;
+  padding: 0;
+}
+
 h2#site-slogan {
   font-size: 1.077em;
   margin: 0;
